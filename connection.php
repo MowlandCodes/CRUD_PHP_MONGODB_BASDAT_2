@@ -1,7 +1,6 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/loadenv.php';
-
 loadEnv(__DIR__ . '/.env');
 
 $DB_HOST = getenv('DB_HOST');
