@@ -3,3 +3,4 @@ vendor
 *.log
 .null-ls*
 node_modules
+assets/style.css
