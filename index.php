@@ -22,11 +22,14 @@ try {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/style.css">
   <title>Praktikum 15 | Basis Data 2</title>
 </head>
 
 <body>
-  <h1>Praktikum 15 | Basis Data 2</h1>
+  <main class="min-h-screen flex flex-col font-sans">
+    <h1 class="text-3xl text-blue-400 font-bold">Hello World</h1>
+  </main>
 </body>
 
 </html>

@@ -2,3 +2,4 @@ vendor
 .env
 *.log
 .null-ls*
+node_modules
