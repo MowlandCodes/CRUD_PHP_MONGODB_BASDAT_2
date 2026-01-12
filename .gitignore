@@ -4,3 +4,4 @@ vendor
 .null-ls*
 node_modules
 assets/style.css
+backup*
