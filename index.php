@@ -34,7 +34,7 @@ if (isset($collection)) {
 
   <div class="container mx-auto p-8">
     <div class="flex justify-between items-center mb-6">
-      <h1 class="text-3xl font-bold text-blue-500">📦 Data Mahasiswa</h1>
+      <h1 class="text-3xl font-bold text-blue-500">Data Mahasiswa</h1>
       <a href="form.php" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded transition">
         + Tambah Data
       </a>

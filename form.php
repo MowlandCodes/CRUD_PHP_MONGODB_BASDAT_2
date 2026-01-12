@@ -38,7 +38,7 @@ if (isset($_GET['id'])) {
 
   <div class="w-full max-w-md bg-gray-800 rounded-lg shadow-lg p-8">
     <h2 class="text-2xl font-bold mb-6 text-center text-blue-400">
-      <?= $isEdit ? '✏️ Edit Mahasiswa' : '➕ Tambah Mahasiswa' ?>
+      <?= $isEdit ? 'Edit Mahasiswa' : 'Tambah Mahasiswa' ?>
     </h2>
 
     <form action="process.php?action=<?= $isEdit ? 'edit' : 'add' ?>" method="POST">
