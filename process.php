@@ -28,6 +28,13 @@ try {
           redirect('index.php');
         }
 
+        $existingUser = $collection->findOne(['nim' => $_POST['nim']]);
+
+        if ($existingUser) {
+          echo "<script>alert('NIM sudah terdaftar!'); window.location.href = 'index.php';</script>";
+          exit();
+        }
+
         $data = [
           'nim' => htmlspecialchars($_POST['nim']),
           'nama' => htmlspecialchars($_POST['nama']),
@@ -43,6 +50,13 @@ try {
       case 'edit':
         if (empty($_POST['nim']) || empty($_POST['nama']) || empty($_POST['prodi']) || empty($_POST['umur'])) {
           redirect('index.php');
+        }
+
+        $existingUser = $collection->findOne(['nim' => $_POST['nim']]);
+
+        if ($existingUser && $existingUser['_id']->__toString() !== $_POST['id']) {
+          echo "<script>alert('NIM sudah terdaftar!'); window.location.href = 'index.php';</script>";
+          exit();
         }
 
         $id = new ObjectId(htmlspecialchars($_POST['id']));
