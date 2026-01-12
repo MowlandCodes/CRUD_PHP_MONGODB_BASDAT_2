@@ -8,6 +8,8 @@ Project ini bergantung pada beberapa dependensi berikut:
 - MongoDB >= 2.0
 - TailwindCSS >= 4.0
 
+Sebelum menjalankan project ini, pastikan Anda telah menginstal dependensi tersebut dengan benar. Dan jangan lupa untuk mengisikan informasi koneksi ke database MongoDB di file `.env` dengan mengambil contoh dari file `.env.example`.
+
 ## Running the project
 
 Sebelum menjalankan project ini silahkan konfigurasi Web Server terlebih dahulu, karena aplikasi PHP tidak bisa berjalan tanpa Web Server yang mendukung FastCGI. Untuk menjalankan project ini di lingkungan Development, Anda dapat menggunakan perintah berikut:
