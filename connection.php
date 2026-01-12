@@ -1,21 +1,72 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
-require __DIR__ . '/loadenv.php';
-loadEnv(__DIR__ . '/.env');
 
-$DB_HOST = getenv('DB_HOST');
-$DB_PORT = getenv('DB_PORT');
-$DB_USER = getenv('DB_USER');
-$DB_PASS = getenv('DB_PASS');
+use MongoDB\Client;
+use MongoDB\Collection;
+use MongoDB\Database as MongoDatabase;
 
-if (!$DB_HOST || !$DB_PORT || !$DB_USER || !$DB_PASS) {
-    die('Please set DB_HOST, DB_PORT, DB_USER, and DB_PASS environment variables.');
+class Database
+{
+    /**
+     * @var Database|null
+     */
+    private static ?Database $instance = null;
+
+    /**
+     * @var Client
+     */
+    private Client $client;
+
+    /**
+     * @var MongoDatabase
+     */
+    private MongoDatabase $db;
+
+    private function __construct()
+    {
+        $host = getenv('DB_HOST');
+        $port = getenv('DB_PORT');
+        $user = getenv('DB_USER');
+        $pass = getenv('DB_PASS');
+
+        if (!$host || !$port || !$user || !$pass) {
+            throw new Exception('❌ Environment variables belum lengkap, woy!');
+        }
+
+        $userEncoded = urlencode($user);
+        $passEncoded = urlencode($pass);
+
+        $uri = "mongodb://{$userEncoded}:{$passEncoded}@{$host}:{$port}";
+
+        try {
+            $this->client = new Client($uri);
+
+            $this->db = $this->client->selectDatabase('test');
+
+            $this->db->command(['ping' => 1]);
+        } catch (Exception $e) {
+            die('🔥 Database Connection Error: ' . $e->getMessage());
+        }
+    }
+
+    public static function getInstance(): Database
+    {
+        if (self::$instance === null) {
+            self::$instance = new Database();
+            echo "✅ New Connection Created\n";
+        } else {
+            echo "♻️ Using Existing Connection (Cached)\n";
+        }
+
+        return self::$instance;
+    }
+
+    public function getCollection(string $collectionName): Collection
+    {
+        return $this->db->$collectionName;
+    }
+
+    public function getDatabase(string $dbName): MongoDatabase
+    {
+        return $this->client->selectDatabase($dbName);
+    }
 }
-
-$client = new MongoDB\Client('mongodb://' . $DB_USER . ':' . $DB_PASS . '@' . $DB_HOST . ':' . $DB_PORT);
-
-$db = $client->kampus;
-
-$collection = $db->mahasiswa;
-
-echo "Connected to MongoDB successfully!\n";
