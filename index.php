@@ -7,14 +7,14 @@ loadEnv(__DIR__ . '/.env');
 require __DIR__ . '/connection.php';
 
 try {
-    $conn = Database::getInstance();
-    $db = $conn->getDatabase('dbBasdat');
+  $conn = Database::getInstance();
+  $db = $conn->getDatabase('dbBasdat');
 
-    $collection = $db->getCollection('mahasiswa');
+  $collection = $db->getCollection('mahasiswa');
 
-    $count = $collection->countDocuments();
-    echo "<br>Jumlah data: $count";
+  $count = $collection->countDocuments();
+  echo "<br>Jumlah data: $count";
 } catch (Exception $e) {
-    echo $e->getMessage();
-    exit;
+  echo $e->getMessage();
+  exit;
 }
