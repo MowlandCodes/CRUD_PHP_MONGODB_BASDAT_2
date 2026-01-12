@@ -52,9 +52,6 @@ class Database
   {
     if (self::$instance === null) {
       self::$instance = new Database();
-      echo "✅ New Connection Created\n";
-    } else {
-      echo "♻️ Using Existing Connection (Cached)\n";
     }
 
     return self::$instance;
